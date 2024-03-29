@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  - const results = [{ substance: "Plastic", size: 'small', price: 550 }, { substance: "Rubber", size: 'Medium', price: "770" }, { substance: "kryptonite", size: 'Large', price: 5000 }]
+  div(class = 'container-fluid')
+    each result, index in results
+      div(class='row', onclick=`buy(${index})`)
+        div(class='col-sm-2') #{result.substance} 
+        div(class='col-sm-2') #{result.size}
+        div(class='col-sm-2') #{result.price}
+
+  script.
+    function buy(index) {
+      alert('You purchased item ' + index);
+    }

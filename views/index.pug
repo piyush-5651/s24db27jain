@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Hi I am Piyush Jain, I am from India.
+  button(type="button", class="btn btn-primary" onclick="double()") I am a button
+  div#double Up the amount.
+  a(href='/raftboat') Raft Boat
+
+  script.
+    var value = 0;
+    var power = 1;
+
+    function double() {
+      value += 1;
+      power *= 2;
+      document.getElementById('double').innerText = `Two to the power ${value} is ${power}`;
+    } 
