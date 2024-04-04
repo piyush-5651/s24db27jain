@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - const results = [{ substance: "Plastic", size: 'small', price: 550 }, { substance: "Rubber", size: 'Medium', price: "770" }, { substance: "kryptonite", size: 'Large', price: 5000 }]
+  - var results = results
   div(class = 'container-fluid')
     each result, index in results
       div(class='row', onclick=`buy(${index})`)
