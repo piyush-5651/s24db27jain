@@ -5,8 +5,6 @@ var router = express.Router();
 router.get('/', raftboat_controlers.raftboat_view_all_Page );
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('raftboat', { title: 'Search Results - raft boat' });
-});
+router.get('/raftboat/:id', raftboat_controlers.raftboat_detail);
 
 module.exports = router;
