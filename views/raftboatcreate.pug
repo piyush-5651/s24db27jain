@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(id='raftboatForm', action="/resource/raftboats", method="POST")
+    div.form-group
+      label.raftboatAttr(for='substance') substance
+      input#substance(type='text', name='substance')
+    div.form-group
+      label.raftboatAttr(for='size') size
+      input#size(type='text', name='size')
+    div.form-group
+      label.raftboatAttr(for='price') Price
+      input#price(type='number', name='price')
+    input(type="submit")
+  script.
+    document.forms[`raftboatForm`].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error)
+      });
+    });

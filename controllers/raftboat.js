@@ -25,6 +25,20 @@ exports.raftboat_view_all_Page = async function (req, res) {
   }
 };
 
+exports.raftboat_view_one_Page = async function (req, res) {
+  console.log("single view for id " + req.query.id);
+  try {
+    result = await raftboat.findById(req.query.id);
+    res.render("raftboatdetail", {
+      title: "raftboat Detail",
+      toShow: result,
+    });
+  } catch (err) {
+    res.status(500);
+    res.send(`{'error': '${err}'}`);
+  }
+};
+
 exports.raftboat_detail = async function (req, res) {
   console.log("detail" + req.params.id);
   try {
@@ -53,10 +67,17 @@ exports.raftboat_create_post = async function (req, res) {
   }
 };
 
-// Handle raftboat delete from on DELETE.
-exports.raftboat_delete = function (req, res) {
-  res.send("NOT IMPLEMENTED: raftboat delete DELETE " + req.params.id);
-};
+exports.raftboat_delete = async function (req, res) {
+  console.log("delete " + req.params.id);
+  try {
+    result = await raftboat.findByIdAndDelete(req.params.id);
+    console.log("Removed " + result);
+    res.send(result);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": Error deleting ${err}}`);
+  }
+}
 // Handle raftboat update form on PUT.
 exports.raftboat_update_put = async function (req, res) {
   console.log(`update on id ${req.params.id} with body
@@ -73,5 +94,16 @@ ${JSON.stringify(req.body)}`);
   } catch (err) {
     res.status(500);
     res.send(`{"error": ${err}: Update for id ${req.params.id}failed`);
+  }
+};
+
+exports.raftboat_create_Page = function(req, res) {
+  console.log("create view")
+  try{
+  res.render('raftboatcreate', { title: 'raftboat Create'});
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
   }
 };

@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let raftboatid = toShow._id
+ - let raftboat_substance = toShow.substance
+ - let raftboat_size = toShow.size
+ - let raftboat_price = toShow.price
+ div
+  div.row
+   div(class='raftboatAttr mr-3') raftboat ID is:
+   div #{raftboatid}
+  div.row
+   div(class='raftboatAttr mr-3') raftboat substance is:
+   div #{raftboat_substance}
+  div.row
+   div(class='raftboatAttr mr-3') raftboat size is:
+   div #{raftboat_size}
+  div.row
+   div(class='raftboatAttr mr-3') raftboat Price is:
+   div #{raftboat_price}
