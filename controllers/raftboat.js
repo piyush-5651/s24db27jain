@@ -97,13 +97,43 @@ ${JSON.stringify(req.body)}`);
   }
 };
 
-exports.raftboat_create_Page = function(req, res) {
-  console.log("create view")
-  try{
-  res.render('raftboatcreate', { title: 'raftboat Create'});
+exports.raftboat_create_Page = function (req, res) {
+  console.log("create view");
+  try {
+    res.render("raftboatcreate", { title: "raftboat Create" });
+  } catch (err) {
+    res.status(500);
+    res.send(`{'error': '${err}'}`);
   }
-  catch(err){
-  res.status(500)
-  res.send(`{'error': '${err}'}`);
+};
+
+// Handle building the view for updating a raftboat.
+// query provides the id
+exports.raftboat_update_Page = async function (req, res) {
+  console.log("update view for item " + req.query.id);
+  try {
+    let result = await raftboat.findById(req.query.id);
+    res.render("raftboatupdate", {
+      title: "raftboat Update",
+      toShow: result,
+    });
+  } catch (err) {
+    res.status(500);
+    res.send(`{'error': '${err}'}`);
+  }
+};
+
+// Handle a delete one view with id from query
+exports.raftboat_delete_Page = async function (req, res) {
+  console.log("Delete view for id " + req.query.id);
+  try {
+    result = await raftboat.findById(req.query.id);
+    res.render("raftboatdelete", {
+      title: "raftboat Delete",
+      toShow: result,
+    });
+  } catch (err) {
+    res.status(500);
+    res.send(`{'error': '${err}'}`);
   }
 };
