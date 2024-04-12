@@ -30,17 +30,17 @@ async function recreateDB(){
 
   await raftboat.deleteMany();
 
-  let instance1 = new Upliftedartwork({
+  let instance1 = new raftboat({
     substance: "Plastic",
     size: "small",
     price: 550,
   });
-  let instance2 = new Upliftedartwork({
+  let instance2 = new raftboat({
     substance: "Rubber",
     size: "Medium",
     price: 770,
   });
-  let instance3 = new Upliftedartwork({
+  let instance3 = new raftboat({
     substance: "kryptonite",
     size: "Large",
     price: 5000,
@@ -79,7 +79,7 @@ if (reseed) {recreateDB();}
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var upliftedartworkRouter = require("./routes/raftboat");
+var raftboatRouter = require("./routes/raftboat");
 var gridRouter = require("./routes/grid");
 var randomItemRouter = require("./routes/pick");
 var resourceRouter = require("./routes/resource");
@@ -107,7 +107,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/upliftedartwork", upliftedartworkRouter);
+app.use("/raftboat", raftboatRouter);
 app.use("/grid", gridRouter);
 app.use("/randomitem", randomItemRouter);
 app.use("/resource", resourceRouter);
